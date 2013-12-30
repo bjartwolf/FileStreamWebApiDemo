@@ -33,3 +33,24 @@ Just clone and run in Visual Studio.
           |    Filesystem   | Compressed file stored on disk 
           |                 | 
           +-----------------+
+
+# Code
+
+This is really all that is happening, the rest is just config and solution files etc.
+```c#
+public class FastController : ApiController
+{
+    [Route("")]
+    public HttpResponseMessage GetResult()
+    {
+        var fs = new FileStream(Path.Combine(HttpRuntime.AppDomainAppPath, "medline13n0701.xml.gz"), FileMode.Open);
+        var response = new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = new StreamContent(fs)
+        };
+        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
+        response.Content.Headers.ContentEncoding.Add("gzip");
+        return response;
+    }
+}
+```
