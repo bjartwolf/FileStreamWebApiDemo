@@ -10,3 +10,6 @@ This is less enterprisy but it can be run without SQL Server and the extra confi
 It even includes a large XML dataset.
 
 Just clone and run in Visual Studio.
+
+
+# Architecture
