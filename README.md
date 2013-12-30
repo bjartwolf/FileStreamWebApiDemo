@@ -11,5 +11,25 @@ It even includes a large XML dataset.
 
 Just clone and run in Visual Studio.
 
-
 # Architecture
+
+
+          +-----------------+
+          |                 |
+          |     Browser     |
+          |                 |
+          |  Unpacking gzip |
+          +--------+--------+
+                   | Content-Encoding: gzip
+                   | Content-Type: application/xml
+          +--------+--------+
+          |                 |
+          |    Web API      | Web API serving a binary stream
+          |                 | directly from file
+          +--------+--------+ 
+                   |
+          +--------+--------+
+          |                 |
+          |    Filesystem   | Compressed file stored on disk 
+          |                 | 
+          +-----------------+
